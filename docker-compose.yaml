@@ -1,0 +1,16 @@
+version: 2.10.2
+
+services:
+  database:
+    image: 'postgres:14.5'
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: username # The PostgreSQL user (useful to connect to the database)
+      POSTGRES_PASSWORD: password # The PostgreSQL password (useful to connect to the database)
+      POSTGRES_DB: menu # Th
+  backend:
+    build:
+      context: ./backend
+    environment:
+      - DATABASE_URL=postgresql://username:password@database:5432/menu?schema=public
